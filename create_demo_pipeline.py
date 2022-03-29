@@ -40,12 +40,13 @@ jython_evaluator = builder.add_stage('Jython Evaluator')
 
 jython_evaluator.set_attributes(init_script='',
                                 destroy_script='',
-                                record_processing_mode='BATCH',
+                                record_processing_mode='RECORD',
                                 script=("record = records[0]\n\n# JOHN => John.\n"
                                         "record.value['firstName'] = record.value['firstName'].title()\n\n"
                                         "# DOE  => Doe.\n"
                                         "record.value['lastName'] = record.value['lastName'].title()\n\n"
                                         "output.write(record)"))
+
 elastic_search = builder.add_stage('Elasticsearch')
 
 elastic_search.set_attributes(http_urls=['${ELASTICSEARCH_URI}'],
