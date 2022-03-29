@@ -85,7 +85,7 @@ def elasticsearch_data(sch, pipeline, database, elasticsearch):
                                 ELASTICSEARCH_INDEX=index,
                                 TABLE_NAME=f'{table_name}',
                                 TABLE_NAME_PATTERN=f'%{table_name}%')
-        job = job_builder.build('Test job for tdf_data_to_elasticsearch pipeline',
+        job = job_builder.build('Test job for DataOps CI-CD pipeline',
                                 pipeline=pipeline,
                                 runtime_parameters=runtime_parameters)
         job.description = 'CI/CD test job'
