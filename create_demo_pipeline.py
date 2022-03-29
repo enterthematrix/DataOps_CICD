@@ -49,11 +49,11 @@ jython_evaluator.set_attributes(init_script='',
 
 elastic_search = builder.add_stage('Elasticsearch')
 
-elastic_search.set_attributes(http_urls=['${ELASTICSEARCH_URI}'],
+elastic_search.set_attributes(http_urls='${ELASTICSEARCH_URI}',
                               index='${ELASTICSEARCH_INDEX}',
                               mapping='tourdefrance',
-                              password='$ELASTICSEARCH_PASSWORD',
-                              user_name='$ELASTICSEARCH_USERNAME',
+                              password='${ELASTICSEARCH_PASSWORD}',
+                              user_name='${ELASTICSEARCH_USERNAME}',
                               use_security=True)
 # Connect the stages and build the pipeline
 jdbc_query_consumer >> field_remover >> field_splitter >> jython_evaluator >> elastic_search
