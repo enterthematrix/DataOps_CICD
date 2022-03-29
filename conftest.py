@@ -11,8 +11,8 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture(scope='session')
-def sch(sch_session):
-    yield sch_session
+def sch(sch):
+    yield sch
 
 
 @pytest.fixture(scope='session')
