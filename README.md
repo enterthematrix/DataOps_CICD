@@ -2,7 +2,7 @@
 
 ### Pre-requisites
 1. [Install](https://docs.streamsets.com/platform-sdk/learn/installation.html) StreamSets SDK for Python 
-2. Install STF(StreamSets Test Framework)
+2. [Install](https://docs.streamsets.com/stf/latest/installation.html) STF(StreamSets Test Framework)
 3. Install STE(StreamSets Test Environment) ** optional if installing mysql/elasticsearch manually 
 
 ### Steps 
@@ -54,8 +54,8 @@ stf --docker-image streamsets/testframework-4.x:latest test -vs \
 --elasticsearch-url 'http://user:password@<elastic-host>:9200' \
 test_tdf_data_to_elasticsearch.py
 ```
-8. 
-9. 
+8. TODO
+
 
 
 
