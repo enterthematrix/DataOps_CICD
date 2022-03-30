@@ -32,31 +32,31 @@ docker network create cluster
 ```
 3. Create MySql instance
 ```
-docker run -d -p 3306:3306 --net=cluster --name=MySQL_5.7  \
--e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=default -e MYSQL_USER=mysql \
--e MYSQL_PASSWORD=mysql  mysql:5.7
+   docker run -d -p 3306:3306 --net=cluster --name=MySQL_5.7  \
+   -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=default -e MYSQL_USER=mysql \
+   -e MYSQL_PASSWORD=mysql  mysql:5.7
 
-docker exec -i MySQL_5.7 mysql -uroot -proot default -e "GRANT ALL ON *.* TO 'mysql'@'%';FLUSH PRIVILEGES;"
+   docker exec -i MySQL_5.7 mysql -uroot -proot default -e "GRANT ALL ON *.* TO 'mysql'@'%';FLUSH PRIVILEGES;"
 ```
 Table schema:
 ```
-CREATE TABLE `tour_de_france` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `year` int(11) DEFAULT NULL,
-  `rank` int(11) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `number` int(11) DEFAULT NULL,
-  `team` varchar(100) DEFAULT NULL,
-  `time` varchar(100) DEFAULT NULL,
-  `hours` int(11) DEFAULT NULL,
-  `mins` int(11) DEFAULT NULL,
-  `secs` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) AUTO_INCREMENT=1;
+      CREATE TABLE `tour_de_france` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `year` int(11) DEFAULT NULL,
+        `rank` int(11) DEFAULT NULL,
+        `name` varchar(100) DEFAULT NULL,
+        `number` int(11) DEFAULT NULL,
+        `team` varchar(100) DEFAULT NULL,
+        `time` varchar(100) DEFAULT NULL,
+        `hours` int(11) DEFAULT NULL,
+        `mins` int(11) DEFAULT NULL,
+        `secs` int(11) DEFAULT NULL,
+        PRIMARY KEY (`id`)
+      ) AUTO_INCREMENT=1;
 ```
 4. Create ElasticSearch instance
 ```
-ste start Elasticsearch_7.9.0 -p 9200:9200
+   ste start Elasticsearch_7.9.0 -p 9200:9200
 ```
 5. Prepare Data Collector with necessary stage libs(jdbc,elasticsearch) and add "CICD-Demo" label
 - Alternatively please checkout [automated provisining](https://github.com/enterthematrix/dataops_provisioning) using StreamSets Python SDK. 
@@ -69,14 +69,14 @@ ste start Elasticsearch_7.9.0 -p 9200:9200
 9. Clone this repo and switch to it's HOME dir
    - Command to run the test manually:
 ```
-   stf --docker-image streamsets/testframework-4.x:latest test -vs \
-   --sch-credential-id ${CRED_ID} --sch-token ${CRED_TOKEN} \
-   --sch-authoring-sdc '<SDC ID prepared in step #5>' \
-   --pipeline-id '<pipeline id created in step #6>' \
-   --sch-executor-sdc-label 'CICD-Demo' \
-   --database 'mysql://<mysql-host>:3306/default' \
-   --elasticsearch-url 'http://user:password@<elastic-host>:9200' \
-   test_tdf_data_to_elasticsearch.py
+         stf --docker-image streamsets/testframework-4.x:latest test -vs \
+         --sch-credential-id ${CRED_ID} --sch-token ${CRED_TOKEN} \
+         --sch-authoring-sdc '<SDC ID prepared in step #5>' \
+         --pipeline-id '<pipeline id created in step #6>' \
+         --sch-executor-sdc-label 'CICD-Demo' \
+         --database 'mysql://<mysql-host>:3306/default' \
+         --elasticsearch-url 'http://user:password@<elastic-host>:9200' \
+         test_tdf_data_to_elasticsearch.py
    ```
 
 9. Jenkins job setup:
@@ -95,10 +95,8 @@ ste start Elasticsearch_7.9.0 -p 9200:9200
    - Trigger the build using cURL ** Authentication options may vary depending upon Jenkins version
 
 ```
-# Retrive the JenkinsCrumb
-curl -v -X GET http://66cb-35-162-35-89.ngrok.io/crumbIssuer/api/json --user <jenkins-user>:<jenkins-password>
-# Trigger the Jenkins build 
-curl -u <jenkins-user>:<jenkins-api-token> -H "JenkinsCrumb: <JenkinsCrumb>" -X POST http://<Jenkins-Server-URL>/job/<Job-Name>/buildWithParameters?token=<jenkins-api-token>
+            # Trigger the Jenkins build 
+            curl -u <jenkins-user>:<jenkins-api-token> -X POST http://<Jenkins-Server-URL>/job/<Job-Name>/buildWithParameters
 ```
 
 10. With the above setup, a new commit on the pipeline will trigger a Webhook action to trigger the Jenkins job
