@@ -62,7 +62,9 @@ ste start Elasticsearch_7.9.0 -p 9200:9200
 6. Import the attached pipeline OR create the pipeline using create_demo_pipeline.py
 7. Create a DataOps subscription
 <img src="/images/subscription.png" align="center"/>
+
 8. Clone this repo and switch to it's HOME dir
+
 9. Command to run the test manually:
 ```
 stf --docker-image streamsets/testframework-4.x:latest test -vs \
