@@ -94,7 +94,7 @@ ste start Elasticsearch_7.9.0 -p 9200:9200
    
 
 
-Trigger the build using cURL ** Authentication options may vary depending upon Jenkins version 
+   Trigger the build using cURL ** Authentication options may vary depending upon Jenkins version 
 ```
 # Retrive the JenkinsCrumb
 curl -v -X GET http://66cb-35-162-35-89.ngrok.io/crumbIssuer/api/json --user <jenkins-user>:<jenkins-password>
