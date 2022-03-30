@@ -80,17 +80,22 @@ Table schema:
    ```
 
 9. Jenkins job setup:
-   - Setup a new project(free-style)
-   <img src="/images/jenkins_project.png" align="right"/>
+
+    - Setup a new project(free-style)
+    <img src="/images/jenkins_project.png" align="right"/>
+   
    
    - Add project parameters 
    <img src="/images/project_params.png" align="right"/>
+
    
    - Configure GitHub repo for the tests
    <img src="/images/git_repo.png" align="right"/>
+
    
    - Configure a shell action under Build section
    <img src="/images/build_action.png" align="right"/>
+
    
    - Trigger the build using cURL ** Authentication options may vary depending upon Jenkins version
 
