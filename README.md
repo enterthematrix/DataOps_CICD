@@ -82,10 +82,13 @@ ste start Elasticsearch_7.9.0 -p 9200:9200
 9. Jenkins job setup:
    - Setup a new project(free-style)
    <img src="/images/jenkins_project.png" align="center"/>
+   
    - Add project parameters 
    <img src="/images/project_params.png" align="center"/>
+   
    - Configure GitHub repo for the tests
    <img src="/images/git_repo.png" align="center"/>
+   
    - Configure a shell action under Build section
    <img src="/images/build_action.png" align="center"/>
 
