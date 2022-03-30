@@ -1,5 +1,5 @@
 <img src="/images/readme.png" align="right" />
-# Provisioning DataOps environment
+# CI-CD with DataOps platform
 
 ### Pre-requisites
 1. [Install](https://docs.streamsets.com/platform-sdk/learn/installation.html) StreamSets SDK for Python 
@@ -26,7 +26,7 @@ deployment.conf:
 ENGINE_ID=<id>
 ENGINE_TYPE=data_collector
 ```
-2. Create Docker network
+2. Create Docker network ** optional 
 ```
 docker network create cluster
 ```
@@ -59,24 +59,26 @@ CREATE TABLE `tour_de_france` (
 ste start Elasticsearch_7.9.0 -p 9200:9200
 ```
 5. Prepare Data Collector with necessary stage libs(jdbc,elasticsearch) and add "CICD-Demo" label
-6. Import the attached pipeline OR create the pipeline using create_demo_pipeline.py
-7. Create a DataOps subscription
+- Alternatively please checkout [automated provisining](https://github.com/enterthematrix/dataops_provisioning) using StreamSets Python SDK. 
+
+7. Import the [attached pipeline](https://github.com/enterthematrix/DataOps_CICD/blob/main/DataOpsCICDpipeline009d1762-04c3-4770-8ac5-c2205acd8824:cd4694f6-2c60-11ec-988d-5b2e605d28aa.json) OR create the pipeline using _create_demo_pipeline.py_
+
+8. Create a subscription in the DataOps platform
 <img src="/images/subscription.png" align="center"/>
 
-8. Clone this repo and switch to it's HOME dir
+9. Clone this repo and switch to it's HOME dir
+   - Command to run the test manually:
+```
+   stf --docker-image streamsets/testframework-4.x:latest test -vs \
+   --sch-credential-id ${CRED_ID} --sch-token ${CRED_TOKEN} \
+   --sch-authoring-sdc '<SDC ID prepared in step #5>' \
+   --pipeline-id '<pipeline id created in step #6>' \
+   --sch-executor-sdc-label 'CICD-Demo' \
+   --database 'mysql://<mysql-host>:3306/default' \
+   --elasticsearch-url 'http://user:password@<elastic-host>:9200' \
+   test_tdf_data_to_elasticsearch.py
+   ```
 
-9. Command to run the test manually:
-```
-stf --docker-image streamsets/testframework-4.x:latest test -vs \
---sch-credential-id ${CRED_ID} --sch-token ${CRED_TOKEN} \
---sch-authoring-sdc '<SDC ID prepared in step #5>' \
---pipeline-id '<pipeline id created in step #6>' \
---sch-executor-sdc-label 'CICD-Demo' \
---database 'mysql://<mysql-host>:3306/default' \
---elasticsearch-url 'http://user:password@<elastic-host>:9200' \
-test_tdf_data_to_elasticsearch.py
-```
-8. TODO
 9. Jenkins job setup:
    - Setup a new project(free-style)
    <img src="/images/jenkins_project.png" align="center"/>
@@ -87,13 +89,17 @@ test_tdf_data_to_elasticsearch.py
    - Configure a shell action under Build section
    <img src="/images/build_action.png" align="center"/>
 
-Trigger the build using cURL
+Trigger the build using cURL ** Authentication options may vary depending upon Jenkins version 
 ```
+# Retrive the JenkinsCrumb
 curl -v -X GET http://66cb-35-162-35-89.ngrok.io/crumbIssuer/api/json --user <jenkins-user>:<jenkins-password>
+# Trigger the Jenkins build 
 curl -u <jenkins-user>:<jenkins-api-token> -H "JenkinsCrumb: <JenkinsCrumb>" -X POST http://<Jenkins-Server-URL>/job/<Job-Name>/buildWithParameters?token=<jenkins-api-token>
 ```
 
-10. 
+10. With the above setup, a new commit on the pipeline will trigger a Webhook action to trigger the Jenkins job
+    - If the "--upgrade-jobs" option is specified with the STF command, a successfull build will automatically upgrade the job to the latest version of the pipeline 
+    - You optionally choose to upgrade the job manually 
 
 
 
