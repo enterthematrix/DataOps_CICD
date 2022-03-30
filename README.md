@@ -75,12 +75,22 @@ stf --docker-image streamsets/testframework-4.x:latest test -vs \
 test_tdf_data_to_elasticsearch.py
 ```
 8. TODO
-9. Jenkins notes:
+9. Jenkins job setup:
+   - Setup a new project(free-style)
+   <img src="/images/jenkins_project.png" align="center"/>
+   - Add project parameters 
+   <img src="/images/project_params.png" align="center"/>
+   - Configure GitHub repo for the tests
+   <img src="/images/git_rep.png" align="center"/>
+   - Configure a shell action under Build section
+   <img src="/images/build_action.png" align="center"/>
+
 Trigger the build using cURL
 ```
 curl -v -X GET http://66cb-35-162-35-89.ngrok.io/crumbIssuer/api/json --user <jenkins-user>:<jenkins-password>
 curl -u <jenkins-user>:<jenkins-api-token> -H "JenkinsCrumb: <JenkinsCrumb>" -X POST http://<Jenkins-Server-URL>/job/<Job-Name>/buildWithParameters?token=<jenkins-api-token>
 ```
+
 10. 
 
 
