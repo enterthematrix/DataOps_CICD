@@ -91,6 +91,8 @@ ste start Elasticsearch_7.9.0 -p 9200:9200
    
    - Configure a shell action under Build section
    <img src="/images/build_action.png" align="right"/>
+   
+
 
 Trigger the build using cURL ** Authentication options may vary depending upon Jenkins version 
 ```
