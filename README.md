@@ -1,5 +1,6 @@
 <img src="/images/readme.png" align="right" />
-# CI-CD with DataOps platform
+
+## CI-CD with DataOps platform
 
 ### Pre-requisites
 1. [Install](https://docs.streamsets.com/platform-sdk/learn/installation.html) StreamSets SDK for Python 
