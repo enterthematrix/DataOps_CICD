@@ -60,14 +60,14 @@ Table schema:
    ste start Elasticsearch_7.9.0 -p 9200:9200
 ```
 5. Prepare Data Collector with necessary stage libs(jdbc,elasticsearch) and add "CICD-Demo" label
-- Alternatively please checkout [automated provisining](https://github.com/enterthematrix/dataops_provisioning) using StreamSets Python SDK. 
+   - Alternatively please checkout [automated provisining](https://github.com/enterthematrix/dataops_provisioning) using StreamSets Python SDK. 
 
-7. Import the [attached pipeline](https://github.com/enterthematrix/DataOps_CICD/blob/main/DataOpsCICDpipeline009d1762-04c3-4770-8ac5-c2205acd8824:cd4694f6-2c60-11ec-988d-5b2e605d28aa.json) OR create the pipeline using _create_demo_pipeline.py_
+6. Import the [attached pipeline](https://github.com/enterthematrix/DataOps_CICD/blob/main/DataOpsCICDpipeline009d1762-04c3-4770-8ac5-c2205acd8824:cd4694f6-2c60-11ec-988d-5b2e605d28aa.json) OR create the pipeline using _create_demo_pipeline.py_
 
-8. Create a subscription in the DataOps platform
+7. Create a subscription in the DataOps platform
 <img src="/images/subscription.png" align="center"/>
 
-9. Clone this repo and switch to it's HOME dir
+8. Clone this repo and switch to it's HOME dir
    - Command to run the test manually:
 ```
          stf --docker-image streamsets/testframework-4.x:latest test -vs \
