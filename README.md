@@ -5,7 +5,7 @@
 ### Pre-requisites
 1. [Install](https://docs.streamsets.com/platform-sdk/learn/installation.html) StreamSets SDK for Python 
 2. [Install](https://docs.streamsets.com/stf/latest/installation.html) STF(StreamSets Test Framework)
-3. Install STE(StreamSets Test Environment) ** optional if installing mysql/elasticsearch manually 
+3. Install STE(StreamSets Test Environment) ** optional if installing MySQL / ElasticSearch manually 
 4. Jenkins
 
 ### Steps 
