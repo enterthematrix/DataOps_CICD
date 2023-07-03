@@ -105,5 +105,5 @@ def elasticsearch_data(sch, pipeline, database, elasticsearch):
         elasticsearch.client.delete_index(index)
 
         logger.info('Dropping table %s ...', table_name)
-        #table.drop(database.engine)
+        table.drop(database.engine)
 
