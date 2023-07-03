@@ -35,7 +35,8 @@ field_remover.fields = ['/id']
 field_splitter = builder.add_stage('Field Splitter')
 
 field_splitter.set_attributes(field_to_split='/name',
-                              new_split_fields=["/firstName", "/lastName"])
+                              new_split_fields=["/firstName", "/lastName"],
+                              separator='\s')
 jython_evaluator = builder.add_stage('Jython Evaluator')
 
 jython_evaluator.set_attributes(init_script='',
