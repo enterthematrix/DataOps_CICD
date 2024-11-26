@@ -89,7 +89,7 @@ def elasticsearch_data(sch, pipeline, database, elasticsearch):
                                 pipeline=pipeline,
                                 runtime_parameters=runtime_parameters)
         job.description = 'CI/CD test job'
-        job.data_collector_labels = ['CICD-Demo']
+        job.data_collector_labels = ['StreamWatcher']
         sch.add_job(job)
         sch.start_job(job)
 
